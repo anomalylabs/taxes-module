@@ -1,9 +1,18 @@
 <?php namespace Anomaly\TaxesModule\Http\Controller\Admin;
 
+use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\TaxesModule\State\Form\StateFormBuilder;
 use Anomaly\TaxesModule\State\Table\StateTableBuilder;
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Illuminate\Contracts\Config\Repository;
 
+/**
+ * Class StatesController
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\TaxesModule\Http\Controller\Admin
+ */
 class StatesController extends AdminController
 {
 
@@ -19,6 +28,20 @@ class StatesController extends AdminController
     }
 
     /**
+     * Choose a country.
+     *
+     * @param Repository $config
+     * @return \Illuminate\Contracts\View\View|mixed
+     */
+    public function choose(Repository $config)
+    {
+        $common    = $config->get('streams::countries.common');
+        $countries = $config->get('streams::countries.available');
+
+        return $this->view->make('module::admin/states/choose', compact('common', 'countries'));
+    }
+
+    /**
      * Create a new entry.
      *
      * @param StateFormBuilder $form
@@ -26,7 +49,9 @@ class StatesController extends AdminController
      */
     public function create(StateFormBuilder $form)
     {
-        return $form->render();
+        return $form
+            ->setCountry($this->request->get('country'))
+            ->render();
     }
 
     /**

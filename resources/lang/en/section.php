@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'taxes' => [
-        'title'       => 'Taxes',
+    'countries' => [
+        'title'       => 'Countries',
         'description' => 'Manage all the tax rates for the countries you ship to.',
     ],
-    'states' => [
+    'states'    => [
         'title'       => 'States',
         'description' => 'Manage regional tax rates for the countries you ship to.',
     ],

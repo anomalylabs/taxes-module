@@ -1,57 +1,85 @@
 <?php namespace Anomaly\TaxesModule\State\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Anomaly\TaxesModule\State\Contract\StateInterface;
 
+/**
+ * Class StateFormBuilder
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\TaxesModule\State\Form
+ */
 class StateFormBuilder extends FormBuilder
 {
 
     /**
-     * The form fields.
+     * The country to
+     * limit states to.
      *
-     * @var array|string
+     * @var null|string
      */
-    protected $fields = [];
+    protected $country = null;
 
     /**
-     * Fields to skip.
-     *
-     * @var array|string
-     */
-    protected $skips = [];
-
-    /**
-     * The form actions.
-     *
-     * @var array|string
-     */
-    protected $actions = [];
-
-    /**
-     * The form buttons.
-     *
-     * @var array|string
-     */
-    protected $buttons = [];
-
-    /**
-     * The form options.
+     * The skipped fields.
      *
      * @var array
      */
-    protected $options = [];
+    protected $skips = [
+        'country'
+    ];
 
     /**
-     * The form sections.
-     *
-     * @var array
+     * Fired after form is built.
      */
-    protected $sections = [];
+    public function onBuilt()
+    {
+        /* @var StateInterface $state */
+        if ($this->getFormMode() == 'edit' && $state = $this->getFormEntry()) {
+            $this->setCountry($state->getCountry());
+        }
+
+        $field = $this->getFormField('state');
+
+        // TODO: need something better than merge! addConfig($key, $value);
+        $field->mergeConfig(['country' => $this->getCountry()]);
+    }
 
     /**
-     * The form assets.
+     * Get the country.
      *
-     * @var array
+     * @return null|string
      */
-    protected $assets = [];
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set the country.
+     *
+     * @param $country
+     * @return $this
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Fired just before saving.
+     */
+    public function onSaving()
+    {
+        $state = $this->getFormEntry();
+
+        if ($country = $this->getCountry()) {
+            $state->setAttribute('country', $country);
+        }
+    }
 
 }

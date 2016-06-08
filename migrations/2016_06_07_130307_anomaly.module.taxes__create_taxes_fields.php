@@ -25,7 +25,8 @@ class AnomalyModuleTaxesCreateTaxesFields extends Migration
         'type'    => [
             'type'   => 'anomaly.field_type.select',
             'config' => [
-                'options' => [
+                'default_value' => 'normal',
+                'options'       => [
                     'normal'     => 'anomaly.module.taxes::field.type.option.normal',
                     'harmonized' => 'anomaly.module.taxes::field.type.option.harmonized',
                     'compounded' => 'anomaly.module.taxes::field.type.option.compounded',

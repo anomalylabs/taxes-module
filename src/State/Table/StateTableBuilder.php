@@ -2,29 +2,45 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class StateTableBuilder
+ *
+ * @link          http://pyrocms.com/
+ * @author        PyroCMS, Inc. <support@pyrocms.com>
+ * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @package       Anomaly\TaxesModule\State\Table
+ */
 class StateTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
 
     /**
      * The table filters.
      *
      * @var array|string
      */
-    protected $filters = [];
+    protected $filters = [
+        'search' => [
+            'fields' => [
+                'state',
+                'name',
+            ]
+        ],
+        'country'
+    ];
 
     /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'country',
+        'state',
+        'name',
+        'rate' => [
+            'wrapper' => '{value}%'
+        ]
+    ];
 
     /**
      * The table buttons.
@@ -43,19 +59,5 @@ class StateTableBuilder extends TableBuilder
     protected $actions = [
         'delete'
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
 
 }

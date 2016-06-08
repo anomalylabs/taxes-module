@@ -19,7 +19,7 @@ class AnomalyModuleTaxesCreateStatesStream extends Migration
      */
     protected $stream = [
         'slug'         => 'states',
-        'title_column' => 'state',
+        'title_column' => 'country',
     ];
 
     /**

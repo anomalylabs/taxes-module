@@ -31,7 +31,17 @@ class CountryTableBuilder extends TableBuilder
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'country',
+        'rate' => [
+            'wrapper' => '{value}%'
+        ],
+        [
+            'value'   => '#',
+            'heading' => false,
+            'wrapper' => '<span class="label label-info">{value} states</span>',
+        ]
+    ];
 
     /**
      * The table buttons.
@@ -40,11 +50,6 @@ class CountryTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
-        'states' => [
-            'type' => 'info',
-            'icon' => 'flag',
-            'text' => 'Regions'
-        ]
     ];
 
     /**
