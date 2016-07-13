@@ -37,6 +37,24 @@ class RateTableBuilder extends TableBuilder
     ];
 
     /**
+     * The table buttons.
+     *
+     * @var array
+     */
+    protected $buttons = [
+        'edit',
+    ];
+
+    /**
+     * The table actions.
+     *
+     * @var array
+     */
+    protected $actions = [
+        'delete',
+    ];
+
+    /**
      * The table options.
      *
      * @var array
