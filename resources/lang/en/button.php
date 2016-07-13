@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'add_country' => 'Add Country',
-    'add_state'   => 'Add State / Province'
+    'rates'    => 'Rates',
+    'add_rate' => 'Add Rate',
+    'add_tax'  => 'Add Tax Class',
 ];

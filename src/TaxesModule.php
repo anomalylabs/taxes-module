@@ -19,20 +19,19 @@ class TaxesModule extends Module
      * @var array
      */
     protected $sections = [
-        'countries' => [
+        'taxes' => [
             'buttons'  => [
-                'add_country'
+                'add_tax'
             ],
-        ],
-        'states' => [
-            'buttons' => [
-                'add_state' => [
-                    'data-toggle' => 'modal',
-                    'data-target' => '#modal',
-                    'href'        => 'admin/taxes/states/choose'
+            'sections' => [
+                'rates' => [
+                    'href'    => 'admin/taxes/rates/{request.route.parameters.class}',
+                    'buttons' => [
+                        'add_rate'
+                    ]
                 ]
             ]
-        ]
+        ],
     ];
 
 }

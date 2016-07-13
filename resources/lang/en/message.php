@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'choose_country' => 'Which country is this state / province for?',
+    'return_to_tax' => 'Return to tax',
 ];

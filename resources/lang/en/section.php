@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'countries' => [
-        'title'       => 'Countries',
-        'description' => 'Manage all the tax rates for the countries you ship to.',
+    'taxes' => [
+        'title'       => 'Tax Classes',
+        'description' => 'Tax classes are collections of rules used to calculate tax amounts.',
     ],
-    'states'    => [
-        'title'       => 'States',
-        'description' => 'Manage regional tax rates for the countries you ship to.',
+    'rates' => [
+        'title'       => 'Rates',
+        'description' => 'Manage tax rates used to calculate tax amounts for a specific tax classes.',
     ],
 ];
