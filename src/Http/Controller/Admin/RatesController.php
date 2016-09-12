@@ -48,7 +48,6 @@ class RatesController extends AdminController
     {
         /* @var TaxInterface $tax */
         if ($tax = $taxes->find($this->route->getParameter('tax'))) {
-            dd($tax);
             $form->setTax($tax);
         }
 
