@@ -51,14 +51,14 @@ class TaxesModuleServiceProvider extends AddonServiceProvider
             'taxable',
             function () {
                 /* @var EloquentModel $this */
-                return $this->morphMany(TaxableModel::class, 'item', 'item_type');
+                return $this->morphOne(TaxableModel::class, 'item', 'item_type');
             }
         );
         $model->bind(
             'get_taxable',
             function () {
                 /* @var EloquentModel $this */
-                return $this->taxable()->get();
+                return $this->taxable()->first();
             }
         );
     }
