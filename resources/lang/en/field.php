@@ -46,8 +46,12 @@ return [
         'option' => 'Taxes for this class are included in product prices.',
     ],
     'suffix'      => [
-        'name'        => 'Suffix',
-        'option'      => 'Specify the suffix to display after tax amounts.',
-        'placeholder' => 'VAT',
+        'name'         => 'Suffix',
+        'instructions' => 'Specify the suffix to display after tax amounts.',
+        'placeholder'  => 'VAT',
+    ],
+    'tax'         => [
+        'name'         => 'Tax Class',
+        'instructions' => 'Specify the tax class for this item.',
     ],
 ];
