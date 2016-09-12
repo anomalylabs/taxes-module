@@ -45,7 +45,7 @@ class RatesController extends AdminController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(RateFormBuilder $form, TaxRepositoryInterface $taxes)
-    {dd($taxes->find($this->route->getParameter('tax')));
+    {
         /* @var TaxInterface $tax */
         if ($tax = $taxes->find($this->route->getParameter('tax'))) {
             dd($tax);
