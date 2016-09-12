@@ -2,8 +2,8 @@
 
 return [
     'taxes' => [
-        'title'       => 'Tax Classes',
-        'description' => 'Tax classes are collections of rules used to calculate tax amounts.',
+        'title'       => 'Taxes',
+        'description' => 'Manage the available taxes available.',
     ],
     'rates' => [
         'title'       => 'Rates',

@@ -40,7 +40,7 @@ class RateFormBuilder extends FormBuilder
 
             $entry = $this->getFormEntry();
 
-            $entry->setAttribute('tax_id', $tax->getId());
+            $entry->setAttribute('tax', $tax);
         }
     }
 
@@ -66,5 +66,4 @@ class RateFormBuilder extends FormBuilder
 
         return $this;
     }
-
 }

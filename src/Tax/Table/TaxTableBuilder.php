@@ -23,8 +23,8 @@ class TaxTableBuilder extends TableBuilder
             'fields' => [
                 'name',
                 'description',
-            ]
-        ]
+            ],
+        ],
     ];
 
     /**
@@ -34,7 +34,7 @@ class TaxTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'description'
+        'description',
     ];
 
     /**
@@ -43,7 +43,12 @@ class TaxTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'edit',
+        'rates' => [
+            'icon' => 'percent',
+            'type' => 'primary',
+            'text' => 'anomaly.module.taxes::button.rates',
+        ],
     ];
 
     /**
@@ -52,21 +57,6 @@ class TaxTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
-
 }

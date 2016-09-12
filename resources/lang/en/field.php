@@ -10,7 +10,7 @@ return [
         'placeholder'  => [
             'taxes' => 'Products',
             'rates' => 'State Tax',
-        ]
+        ],
     ],
     'description' => [
         'name'         => 'Description',
@@ -19,13 +19,13 @@ return [
     'country'     => [
         'name'         => 'Country',
         'instructions' => 'Specify the country in which this tax applies.',
-        'warning'      => 'If not specified the country will be skipped when matching rates.'
+        'warning'      => 'If not specified the country will be skipped when matching rates.',
     ],
     'state'       => [
         'name'         => 'Region',
         'label'        => 'State / Province',
         'instructions' => 'You are required to charge taxes for regions your business has a physical presence in.',
-        'warning'      => 'If not specified the state/province will be skipped when matching rates.'
+        'warning'      => 'If not specified the state/province will be skipped when matching rates.',
     ],
     'rate'        => [
         'name'         => 'Tax Rate',
@@ -39,10 +39,15 @@ return [
     'postal_code' => [
         'name'         => 'ZIP/Postal Code',
         'instructions' => 'Specify the tax rate for your local municipal.',
-        'warning'      => 'If not specified the ZIP/Postal Code will be skipped when matching rates.'
+        'warning'      => 'If not specified the ZIP/Postal Code will be skipped when matching rates.',
     ],
     'inclusive'   => [
         'name'   => 'Included in Price',
-        'option' => 'Taxes for this class are included in product prices.'
-    ]
+        'option' => 'Taxes for this class are included in product prices.',
+    ],
+    'suffix'      => [
+        'name'        => 'Suffix',
+        'option'      => 'Specify the suffix to display after tax amounts.',
+        'placeholder' => 'VAT',
+    ],
 ];

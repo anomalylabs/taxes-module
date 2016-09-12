@@ -42,7 +42,8 @@ class AnomalyModuleTaxesCreateTaxesStream extends Migration
         'description' => [
             'translatable' => true,
         ],
-        'inclusive'
+        'inclusive',
+        'suffix',
     ];
 
 }

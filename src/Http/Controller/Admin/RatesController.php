@@ -22,13 +22,12 @@ class RatesController extends AdminController
      *
      * @param RateTableBuilder       $table
      * @param TaxRepositoryInterface $taxes
-     * @param                        $tax
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(RateTableBuilder $table, TaxRepositoryInterface $taxes, $tax)
+    public function index(RateTableBuilder $table, TaxRepositoryInterface $taxes)
     {
         /* @var TaxInterface $tax */
-        if ($tax = $taxes->find($tax)) {
+        if ($tax = $taxes->find($this->route->getParameter('tax'))) {
 
             $this->template->set('tax', $tax);
 
@@ -45,10 +44,11 @@ class RatesController extends AdminController
      * @param TaxRepositoryInterface $taxes
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(RateFormBuilder $form, TaxRepositoryInterface $taxes, $tax)
-    {
+    public function create(RateFormBuilder $form, TaxRepositoryInterface $taxes)
+    {dd($taxes->find($this->route->getParameter('tax')));
         /* @var TaxInterface $tax */
-        if ($tax = $taxes->find($tax)) {
+        if ($tax = $taxes->find($this->route->getParameter('tax'))) {
+            dd($tax);
             $form->setTax($tax);
         }
 
@@ -59,12 +59,10 @@ class RatesController extends AdminController
      * Edit an existing entry.
      *
      * @param RateFormBuilder $form
-     * @param                 $tax
-     * @param                 $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(RateFormBuilder $form, $tax, $id)
+    public function edit(RateFormBuilder $form)
     {
-        return $form->render($id);
+        return $form->render($this->route->getParameter('id'));
     }
 }

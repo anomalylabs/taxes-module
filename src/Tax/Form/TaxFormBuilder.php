@@ -19,13 +19,12 @@ class TaxFormBuilder extends FormBuilder
      * @var array
      */
     protected $buttons = [
+        'cancel',
         'rates' => [
             'icon'    => 'percent',
             'type'    => 'primary',
             'enabled' => 'edit',
             'text'    => 'anomaly.module.taxes::button.rates',
         ],
-        'cancel',
     ];
-
 }

@@ -21,16 +21,16 @@ class TaxesModule extends Module
     protected $sections = [
         'taxes' => [
             'buttons'  => [
-                'add_tax'
+                'new_tax',
             ],
             'sections' => [
                 'rates' => [
-                    'href'    => 'admin/taxes/rates/{request.route.parameters.class}',
+                    'href'    => 'admin/taxes/rates/{request.route.parameters.tax}',
                     'buttons' => [
-                        'add_rate'
-                    ]
-                ]
-            ]
+                        'add_rate',
+                    ],
+                ],
+            ],
         ],
     ];
 
