@@ -1,5 +1,5 @@
-# Tax Module
+# Taxes Module
 
-*anomaly.module.tax*
+*anomaly.module.taxes*
 
 #### Tax Management
