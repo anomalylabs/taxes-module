@@ -31,6 +31,28 @@ class RateFormBuilder extends FormBuilder
     ];
 
     /**
+     * The form sections.
+     *
+     * @var array
+     */
+    protected $sections = [
+        [
+            'fields' => [
+                'name',
+                'amount',
+                'compound',
+            ],
+        ],
+        [
+            'fields' => [
+                'country',
+                'state',
+                'postal_code',
+            ],
+        ],
+    ];
+
+    /**
      * Fired just before saving.
      */
     public function onSaving()

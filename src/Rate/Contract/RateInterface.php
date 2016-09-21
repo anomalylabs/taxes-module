@@ -37,9 +37,9 @@ interface RateInterface extends EntryInterface
     public function calculate($value);
 
     /**
-     * Get the rate.
+     * Get the amount.
      *
      * @return float
      */
-    public function getRate();
+    public function getAmount();
 }

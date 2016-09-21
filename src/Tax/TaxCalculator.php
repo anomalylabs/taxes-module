@@ -21,7 +21,7 @@ class TaxCalculator
      */
     public function calculate(RateInterface $rate, $value)
     {
-        return floatval($value * ($rate->getRate() / 100));
+        return floatval($value * ($rate->getAmount() / 100));
     }
 
     /**
@@ -33,7 +33,7 @@ class TaxCalculator
      */
     public function apply(RateInterface $rate, $value)
     {
-        return floatval($value + ($value * ($rate->getRate() / 100)));
+        return floatval($value + ($value * ($rate->getAmount() / 100)));
     }
 
     /**
@@ -45,6 +45,6 @@ class TaxCalculator
      */
     public function deduct(RateInterface $rate, $value)
     {
-        return floatval($value / (1 + ($rate->getRate() / 100)));
+        return floatval($value / (1 + ($rate->getAmount() / 100)));
     }
 }

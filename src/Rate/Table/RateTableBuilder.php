@@ -32,7 +32,9 @@ class RateTableBuilder extends TableBuilder
         'country',
         'state',
         'postal_code',
-        'rate',
+        'amount' => [
+            'wrapper' => '{value}%',
+        ],
         'entry.compound.label',
     ];
 
@@ -60,7 +62,7 @@ class RateTableBuilder extends TableBuilder
      * @var array
      */
     protected $options = [
-        'heading' => 'module::admin/rates/heading'
+        'heading' => 'module::admin/rates/heading',
     ];
 
     /**

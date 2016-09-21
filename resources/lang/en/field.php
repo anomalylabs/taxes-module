@@ -27,13 +27,14 @@ return [
         'instructions' => 'You are required to charge taxes for regions your business has a physical presence in.',
         'warning'      => 'If not specified the state/province will be skipped when matching rates.',
     ],
-    'rate'        => [
-        'name'         => 'Tax Rate',
+    'amount'      => [
+        'name'         => 'Amount',
         'instructions' => 'Specify the tax rate for the defined country, state, postal code.',
+        'placeholder'  => '6.025',
     ],
     'compound'    => [
         'name'         => 'Compound',
-        'value'        => 'Compound on top of lower priority taxes',
+        'value'        => 'Compound on top of next lower priority tax.',
         'instructions' => 'How is this tax calculated in conjunction with other matching rates?',
     ],
     'postal_code' => [

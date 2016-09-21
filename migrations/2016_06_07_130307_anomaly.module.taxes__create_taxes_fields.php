@@ -25,7 +25,7 @@ class AnomalyModuleTaxesCreateTaxesFields extends Migration
         'suffix'      => 'anomaly.field_type.text',
         'item'        => 'anomaly.field_type.polymorphic',
         'taxable'     => 'anomaly.field_type.boolean',
-        'rate'        => [
+        'amount'      => [
             'type'   => 'anomaly.field_type.decimal',
             'config' => [
                 'decimals' => 3,

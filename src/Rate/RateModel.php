@@ -50,12 +50,12 @@ class RateModel extends TaxesRatesEntryModel implements RateInterface
     }
 
     /**
-     * Get the rate.
+     * Get the amount.
      *
      * @return float
      */
-    public function getRate()
+    public function getAmount()
     {
-        return $this->rate;
+        return $this->amount;
     }
 }
