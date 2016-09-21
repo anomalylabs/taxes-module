@@ -18,16 +18,6 @@ class TaxableModel extends TaxesTaxablesEntryModel implements TaxableInterface
 {
 
     /**
-     * Get the taxable flag.
-     *
-     * @return bool
-     */
-    public function isTaxable()
-    {
-        return $this->getFieldValue('taxable');
-    }
-
-    /**
      * Get the taxable country.
      *
      * @return string|null

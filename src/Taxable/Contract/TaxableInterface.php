@@ -19,13 +19,6 @@ interface TaxableInterface extends EntryInterface
 {
 
     /**
-     * Get the taxable flag.
-     *
-     * @return bool
-     */
-    public function isTaxable();
-
-    /**
      * Get the taxable country.
      *
      * @return string|null

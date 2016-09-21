@@ -24,7 +24,6 @@ class AnomalyModuleTaxesCreateTaxablesStream extends Migration
         'item' => [
             'required' => true,
         ],
-        'taxable',
         'tax'  => [
             'required' => true,
         ],
