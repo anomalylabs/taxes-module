@@ -33,7 +33,7 @@ return [
     ],
     'compound'    => [
         'name'         => 'Compound',
-        'value'        => 'Compound on top lower priority taxes',
+        'value'        => 'Compound on top of lower priority taxes',
         'instructions' => 'How is this tax calculated in conjunction with other matching rates?',
     ],
     'postal_code' => [

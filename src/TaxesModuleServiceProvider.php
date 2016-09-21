@@ -50,15 +50,45 @@ class TaxesModuleServiceProvider extends AddonServiceProvider
         $model->bind(
             'taxable',
             function () {
+
                 /* @var EloquentModel $this */
                 return $this->morphOne(TaxableModel::class, 'item', 'item_type');
             }
         );
+
         $model->bind(
             'get_taxable',
             function () {
+
                 /* @var EloquentModel $this */
                 return $this->taxable()->first();
+            }
+        );
+
+        $model->bind(
+            'get_taxable_country',
+            function () {
+
+                /* @var EloquentModel $this */
+                return $this->getAttribute('country');
+            }
+        );
+
+        $model->bind(
+            'get_taxable_state',
+            function () {
+
+                /* @var EloquentModel $this */
+                return $this->getAttribute('state');
+            }
+        );
+
+        $model->bind(
+            'get_taxable_postal_code',
+            function () {
+
+                /* @var EloquentModel $this */
+                return $this->getAttribute('postal_code');
             }
         );
     }
