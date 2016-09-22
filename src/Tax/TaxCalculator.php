@@ -1,5 +1,6 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
+use Anomaly\Streams\Platform\Support\Currency;
 use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 
 /**
@@ -13,6 +14,23 @@ class TaxCalculator
 {
 
     /**
+     * The currency utility.
+     *
+     * @var Currency
+     */
+    protected $currency;
+
+    /**
+     * Create a new TaxCalculator instance.
+     *
+     * @param Currency $currency
+     */
+    public function __construct(Currency $currency)
+    {
+        $this->currency = $currency;
+    }
+
+    /**
      * Calculate the tax amount.
      *
      * @param RateInterface $rate
@@ -21,7 +39,7 @@ class TaxCalculator
      */
     public function calculate(RateInterface $rate, $value)
     {
-        return floatval($value * ($rate->getRate() / 100));
+        return $this->currency->normalize(floatval($value * ($rate->getRate() / 100)));
     }
 
     /**
@@ -33,7 +51,7 @@ class TaxCalculator
      */
     public function apply(RateInterface $rate, $value)
     {
-        return floatval($value + ($value * ($rate->getRate() / 100)));
+        return $this->currency->normalize(floatval($value + ($value * ($rate->getRate() / 100))));
     }
 
     /**
@@ -45,6 +63,6 @@ class TaxCalculator
      */
     public function deduct(RateInterface $rate, $value)
     {
-        return floatval($value / (1 + ($rate->getRate() / 100)));
+        return $this->currency->normalize(floatval($value / (1 + ($rate->getRate() / 100))));
     }
 }

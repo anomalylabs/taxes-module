@@ -36,7 +36,7 @@ class RateTableBuilder extends TableBuilder
             'wrapper' => '{value}%',
         ],
         'priority',
-        'entry.compound.is_true ? entry.compound.label',
+        'entry.compound.istrue ? entry.compound.label',
     ];
 
     /**

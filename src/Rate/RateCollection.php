@@ -3,6 +3,7 @@
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 use Anomaly\TaxesModule\Tax\TaxMatcher;
+use Anomaly\TaxesModule\Taxable\Contract\TaxableInterface;
 
 /**
  * Class RateCollection
@@ -15,14 +16,14 @@ class RateCollection extends EntryCollection
 {
 
     /**
-     * Return matching rates.
+     * Collect matching rates.
      *
      * @param null $country
      * @param null $state
      * @param null $postal
      * @return RateCollection
      */
-    public function resolve(array $parameters = [])
+    public function collect(array $parameters = [])
     {
         $rates = [];
 

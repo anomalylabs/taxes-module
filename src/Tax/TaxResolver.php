@@ -24,6 +24,6 @@ class TaxResolver
     {
         $rates = $taxable->getTaxRates();
 
-        return $rates->resolve($parameters);
+        return $rates->collect($parameters);
     }
 }
