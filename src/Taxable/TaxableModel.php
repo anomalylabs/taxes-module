@@ -67,16 +67,6 @@ class TaxableModel extends TaxesTaxablesEntryModel implements TaxableInterface
     }
 
     /**
-     * Get the related tax ID.
-     *
-     * @return int
-     */
-    public function getTaxId()
-    {
-        return $this->tax_id;
-    }
-
-    /**
      * Get the related tax rates.
      *
      * @return RateCollection

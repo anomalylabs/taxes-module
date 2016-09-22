@@ -1,25 +1,66 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\TaxesModule\Rate\Contract\RateInterface;
+use Anomaly\TaxesModule\Rate\RateCollection;
 
 /**
  * Class TaxApplicator
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\TaxesModule\Tax
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class TaxApplicator
 {
 
     /**
-     * Apply taxes to an order.
+     * The tax calculator.
      *
-     * @param OrderInterface $order
+     * @var TaxCalculator
      */
-    public function apply(OrderInterface $order)
+    protected $calculator;
+
+    /**
+     * Create a new TaxProcessor instance.
+     *
+     * @param TaxCalculator $calculator
+     */
+    public function __construct(TaxCalculator $calculator)
     {
-        $order->setAttribute('tax', $order->subtotal() * 0.0675);
+        $this->calculator = $calculator;
+    }
+
+    /**
+     * Process primary taxes.
+     *
+     * @param RateCollection $rates
+     * @param                $value
+     */
+    public function primary(RateCollection $rates, $value)
+    {
+        $tax = 0.0;
+
+        /* @var RateInterface $rate */
+        foreach ($rates->primary() as $rate) {
+            $tax = $tax + $this->calculator->calculate($rate, $value);
+        }
+
+        return $value + $tax;
+    }
+
+    /**
+     * Process compound taxes.
+     *
+     * @param RateCollection $rates
+     * @param                $value
+     */
+    public function compound(RateCollection $rates, $value)
+    {
+        /* @var RateInterface $rate */
+        foreach ($rates->compound() as $rate) {
+            $value = $this->calculator->apply($rate, $value);
+        }
+
+        return $value;
     }
 }

@@ -1,7 +1,7 @@
 <?php namespace Anomaly\TaxesModule\Taxable;
 
-use Anomaly\TaxesModule\Taxable\Contract\TaxableRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
+use Anomaly\TaxesModule\Taxable\Contract\TaxableRepositoryInterface;
 
 class TaxableRepository extends EntryRepository implements TaxableRepositoryInterface
 {

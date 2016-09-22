@@ -29,13 +29,14 @@ class RateTableBuilder extends TableBuilder
      */
     protected $columns = [
         'name',
-        'country',
-        'state',
-        'postal_code',
-        'amount' => [
+        'entry.country.value ?: "*"',
+        'entry.state.value ?: "*"',
+        'entry.postal_code.value ?: "*"',
+        'rate' => [
             'wrapper' => '{value}%',
         ],
-        'entry.compound.label',
+        'priority',
+        'entry.compound.is_true ? entry.compound.label',
     ];
 
     /**

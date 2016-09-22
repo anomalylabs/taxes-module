@@ -39,7 +39,8 @@ class RateFormBuilder extends FormBuilder
         [
             'fields' => [
                 'name',
-                'amount',
+                'rate',
+                'priority',
                 'compound',
             ],
         ],
@@ -48,6 +49,7 @@ class RateFormBuilder extends FormBuilder
                 'country',
                 'state',
                 'postal_code',
+                'city',
             ],
         ],
     ];

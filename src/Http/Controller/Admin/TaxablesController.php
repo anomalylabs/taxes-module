@@ -1,8 +1,8 @@
 <?php namespace Anomaly\TaxesModule\Http\Controller\Admin;
 
+use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\TaxesModule\Taxable\Form\TaxableFormBuilder;
 use Anomaly\TaxesModule\Taxable\Table\TaxableTableBuilder;
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 class TaxablesController extends AdminController
 {
@@ -33,7 +33,7 @@ class TaxablesController extends AdminController
      * Edit an existing entry.
      *
      * @param TaxableFormBuilder $form
-     * @param        $id
+     * @param                    $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(TaxableFormBuilder $form, $id)

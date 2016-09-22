@@ -45,14 +45,7 @@ interface TaxableInterface extends EntryInterface
      * @return TaxInterface
      */
     public function getTax();
-
-    /**
-     * Get the related tax ID.
-     *
-     * @return int
-     */
-    public function getTaxId();
-
+    
     /**
      * Get the related tax rates.
      *

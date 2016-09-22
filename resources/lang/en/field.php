@@ -19,16 +19,30 @@ return [
     'country'     => [
         'name'         => 'Country',
         'instructions' => 'Specify the country in which this tax applies.',
-        'warning'      => 'If not specified the country will be skipped when matching rates.',
+        'warning'      => 'Leave blank to apply to all countries.',
+        'placeholder'  => '*',
     ],
     'state'       => [
         'name'         => 'Region',
         'label'        => 'State / Province',
         'instructions' => 'You are required to charge taxes for regions your business has a physical presence in.',
-        'warning'      => 'If not specified the state/province will be skipped when matching rates.',
+        'warning'      => 'Leave blank to apply to all states.',
+        'placeholder'  => '*',
     ],
-    'amount'      => [
-        'name'         => 'Amount',
+    'postal_code' => [
+        'name'         => 'ZIP/Postal Code',
+        'instructions' => 'Specify the tax rate for your local municipal.',
+        'warning'      => 'Leave blank to apply to all ZIP/postal codes.',
+        'placeholder'  => '*',
+    ],
+    'city'        => [
+        'name'         => 'City',
+        'instructions' => 'Specify the tax rate for a specific city.',
+        'warning'      => 'Leave blank to apply to all cities.',
+        'placeholder'  => '*',
+    ],
+    'rate'        => [
+        'name'         => 'Tax Rate',
         'instructions' => 'Specify the tax rate for the defined country, state, postal code.',
         'placeholder'  => '6.025',
     ],
@@ -37,22 +51,13 @@ return [
         'value'        => 'Compound on top of next lower priority tax.',
         'instructions' => 'How is this tax calculated in conjunction with other matching rates?',
     ],
-    'postal_code' => [
-        'name'         => 'ZIP/Postal Code',
-        'instructions' => 'Specify the tax rate for your local municipal.',
-        'warning'      => 'If not specified the ZIP/Postal Code will be skipped when matching rates.',
-    ],
-    'inclusive'   => [
-        'name'   => 'Included in Price',
-        'option' => 'Taxes for this class are included in product prices.',
-    ],
-    'suffix'      => [
-        'name'         => 'Suffix',
-        'instructions' => 'Specify the suffix to display after tax amounts.',
-        'placeholder'  => 'VAT',
-    ],
     'tax'         => [
         'name'         => 'Tax Class',
         'instructions' => 'Specify the tax class for this item.',
+    ],
+    'priority'    => [
+        'name'         => 'Priority',
+        'instructions' => 'Specify a priority for this tax rate.',
+        'warning'      => 'Only 1 matching rate per priority will be used.',
     ],
 ];

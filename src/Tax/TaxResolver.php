@@ -1,6 +1,5 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
-use Anomaly\TaxesModule\Rate\Contract\RateRepositoryInterface;
 use Anomaly\TaxesModule\Taxable\Contract\TaxableInterface;
 
 /**
@@ -14,29 +13,17 @@ class TaxResolver
 {
 
     /**
-     * The rate repository.
-     *
-     * @var RateRepositoryInterface
-     */
-    protected $rates;
-
-    /**
-     * Create a new TaxResolver instance.
-     *
-     * @param RateRepositoryInterface $rates
-     */
-    public function __construct(RateRepositoryInterface $rates)
-    {
-        $this->rates = $rates;
-    }
-
-    /**
      * Resolve the applicable tax rate.
      *
      * @param TaxableInterface $taxable
+     * @param null             $country
+     * @param null             $state
+     * @param null             $postal
      */
-    public function resolve(TaxableInterface $taxable)
+    public function resolve(TaxableInterface $taxable, array $parameters = [])
     {
-        return $this->rates->findByTaxable($taxable);
+        $rates = $taxable->getTaxRates();
+
+        return $rates->resolve($parameters);
     }
 }

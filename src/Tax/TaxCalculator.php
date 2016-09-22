@@ -16,35 +16,35 @@ class TaxCalculator
      * Calculate the tax amount.
      *
      * @param RateInterface $rate
-     * @param $value
+     * @param               $value
      * @return float
      */
     public function calculate(RateInterface $rate, $value)
     {
-        return floatval($value * ($rate->getAmount() / 100));
+        return floatval($value * ($rate->getRate() / 100));
     }
 
     /**
      * Apply the tax amount.
      *
      * @param RateInterface $rate
-     * @param $value
+     * @param               $value
      * @return float
      */
     public function apply(RateInterface $rate, $value)
     {
-        return floatval($value + ($value * ($rate->getAmount() / 100)));
+        return floatval($value + ($value * ($rate->getRate() / 100)));
     }
 
     /**
      * Deduct the tax amount.
      *
      * @param RateInterface $rate
-     * @param $value
+     * @param               $value
      * @return float
      */
     public function deduct(RateInterface $rate, $value)
     {
-        return floatval($value / (1 + ($rate->getAmount() / 100)));
+        return floatval($value / (1 + ($rate->getRate() / 100)));
     }
 }

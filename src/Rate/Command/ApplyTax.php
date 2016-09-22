@@ -31,7 +31,7 @@ class ApplyTax
      * Create a new ApplyTax instance.
      *
      * @param RateInterface $rate
-     * @param float $value
+     * @param float         $value
      */
     public function __construct(RateInterface $rate, $value)
     {

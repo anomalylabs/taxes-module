@@ -22,20 +22,20 @@ class AnomalyModuleTaxesCreateTaxesFields extends Migration
         'country'     => 'anomaly.field_type.country',
         'state'       => 'anomaly.field_type.state',
         'postal_code' => 'anomaly.field_type.text',
-        'suffix'      => 'anomaly.field_type.text',
+        'city'        => 'anomaly.field_type.text',
         'item'        => 'anomaly.field_type.polymorphic',
-        'amount'      => [
+        'description' => 'anomaly.field_type.textarea',
+        'rate'        => [
             'type'   => 'anomaly.field_type.decimal',
             'config' => [
                 'decimals' => 3,
             ],
         ],
-        'description' => 'anomaly.field_type.textarea',
-        'inclusive'   => [
-            'type'   => 'anomaly.field_type.boolean',
+        'priority'    => [
+            'type'   => 'anomaly.field_type.integer',
             'config' => [
-                'mode'  => 'checkbox',
-                'label' => 'anomaly.module.taxes::field.inclusive.option',
+                'default_value' => 1,
+                'min'           => 1,
             ],
         ],
         'compound'    => [
