@@ -60,6 +60,16 @@ class RateModel extends TaxesRatesEntryModel implements RateInterface
     }
 
     /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Get the priority.
      *
      * @return int

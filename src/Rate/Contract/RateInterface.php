@@ -44,6 +44,13 @@ interface RateInterface extends EntryInterface
     public function getRate();
 
     /**
+     * Get the name.
+     *
+     * @return string
+     */
+    public function getName();
+
+    /**
      * Get the priority.
      *
      * @return int
