@@ -19,6 +19,24 @@ interface TaxableInterface extends EntryInterface
 {
 
     /**
+     * Apply taxes to the amount.
+     *
+     * @param       $amount
+     * @param array $parameters
+     * @return float
+     */
+    public function apply($amount, array $parameters = []);
+
+    /**
+     * Calculate taxes for the amount.
+     *
+     * @param       $amount
+     * @param array $parameters
+     * @return float
+     */
+    public function calculate($amount, array $parameters = []);
+
+    /**
      * Get the taxable country.
      *
      * @return string|null
@@ -45,7 +63,7 @@ interface TaxableInterface extends EntryInterface
      * @return TaxInterface
      */
     public function getTax();
-    
+
     /**
      * Get the related tax rates.
      *

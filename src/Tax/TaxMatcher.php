@@ -13,37 +13,52 @@ class TaxMatcher
 {
 
     /**
-     * Return if the zone matches the rate.
+     * Return if the rate matches the parameters.
      *
      * @param RateInterface $rate
-     * @param null          $country
-     * @param null          $state
-     * @param null          $postal
+     * @param array         $parameters
      * @return bool
      */
     public function matches(RateInterface $rate, array $parameters = [])
     {
-        $country = array_get($parameters, 'country');
-
-        if ($country && $rate->getCountry() && $rate->getCountry() != $country) {
+        if (!$this->applies(array_get($parameters, 'country'), $rate->getCountry())) {
             return false;
         }
 
-        $state = array_get($parameters, 'state');
-
-        if ($state && $rate->getState() && $rate->getState() != $state) {
+        if (!$this->applies(array_get($parameters, 'state'), $rate->getState())) {
             return false;
         }
 
-        $postal = array_get($parameters, 'postal_code');
-
-        if ($postal && $rate->getPostalCode() && $rate->getPostalCode() != $postal) {
+        if (!$this->applies(array_get($parameters, 'postal_code'), $rate->getPostalCode())) {
             return false;
         }
 
-        $city = array_get($parameters, 'city');
+        if (!$this->applies(array_get($parameters, 'city'), $rate->getCity())) {
+            return false;
+        }
 
-        if ($city && $rate->getCity() && $rate->getCity() != $city) {
+        return true;
+    }
+
+    /**
+     * Return if a zone applies
+     * based on a parameter value.
+     *
+     * @param $parameter
+     * @param $rate
+     * @return bool
+     */
+    protected function applies($parameter, $rate)
+    {
+        if (!$parameter && !$rate) {
+            return true;
+        }
+
+        if (!$parameter && $rate) {
+            return false;
+        }
+
+        if (is_string($rate) && $parameter && $rate && $parameter != $rate) {
             return false;
         }
 
