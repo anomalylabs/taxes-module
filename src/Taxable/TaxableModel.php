@@ -12,10 +12,9 @@ use Anomaly\TaxesModule\Taxable\Contract\TaxableInterface;
 /**
  * Class TaxableModel
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\TaxesModule\Taxable
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class TaxableModel extends TaxesTaxablesEntryModel implements TaxableInterface
 {
@@ -54,45 +53,6 @@ class TaxableModel extends TaxesTaxablesEntryModel implements TaxableInterface
     public function taxes($amount, array $parameters = [])
     {
         return $this->dispatch(new GatherTaxes($this, $amount, $parameters));
-    }
-
-    /**
-     * Get the taxable country.
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        $item = $this->getItem();
-
-        // Route to the hook / method.
-        return $item->getTaxableCountry();
-    }
-
-    /**
-     * Get the taxable state.
-     *
-     * @return string|null
-     */
-    public function getState()
-    {
-        $item = $this->getItem();
-
-        // Route to the hook / method.
-        return $item->getTaxableState();
-    }
-
-    /**
-     * Get the taxable postal code.
-     *
-     * @return string|null
-     */
-    public function getPostalCode()
-    {
-        $item = $this->getItem();
-
-        // Route to the hook / method.
-        return $item->getTaxablePostalCode();
     }
 
     /**

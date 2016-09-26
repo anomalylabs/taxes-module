@@ -10,10 +10,9 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * Interface TaxableInterface
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\TaxesModule\Taxable\Contract
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 interface TaxableInterface extends EntryInterface
 {
@@ -37,25 +36,13 @@ interface TaxableInterface extends EntryInterface
     public function calculate($amount, array $parameters = []);
 
     /**
-     * Get the taxable country.
+     * Gather all applied taxes.
      *
-     * @return string|null
+     * @param       $amount
+     * @param array $parameters
+     * @return array
      */
-    public function getCountry();
-
-    /**
-     * Get the taxable state.
-     *
-     * @return string|null
-     */
-    public function getState();
-
-    /**
-     * Get the taxable postal code.
-     *
-     * @return string|null
-     */
-    public function getPostalCode();
+    public function taxes($amount, array $parameters = []);
 
     /**
      * Get the related tax.

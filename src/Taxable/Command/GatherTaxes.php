@@ -64,10 +64,9 @@ class GatherTaxes
             function ($rate) {
 
                 /* @var RateInterface $rate */
-                return [
-                    'name'   => $rate->getName(),
-                    'amount' => $rate->calculate($this->amount),
-                ];
+                $amount = $rate->calculate($this->amount);
+
+                return array_merge($rate->toArray(), compact('amount'));
             }
         )->all();
 
@@ -77,10 +76,9 @@ class GatherTaxes
             function ($rate) use ($amount) {
 
                 /* @var RateInterface $rate */
-                return [
-                    'name'   => $rate->getName(),
-                    'amount' => $rate->calculate($amount),
-                ];
+                $amount = $rate->calculate($amount);
+
+                return array_merge($rate->toArray(), compact('amount'));
             }
         )->all();
 
