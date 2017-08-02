@@ -1,6 +1,6 @@
 <?php namespace Anomaly\TaxesModule\Rate;
 
-use Anomaly\CustomersModule\Address\Contract\AddressInterface;
+use Anomaly\StoreModule\Contract\AddressInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 use Anomaly\TaxesModule\Tax\TaxMatcher;
