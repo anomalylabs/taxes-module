@@ -1,7 +1,7 @@
 <?php namespace Anomaly\TaxesModule\Rate\Form;
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\TaxesModule\Tax\Contract\TaxInterface;
+use Anomaly\TaxesModule\Category\Contract\CategoryInterface;
 
 /**
  * Class RateFormBuilder
@@ -15,11 +15,11 @@ class RateFormBuilder extends FormBuilder
 {
 
     /**
-     * The tax interface.
+     * The tax category.
      *
-     * @var null|TaxInterface
+     * @var null|CategoryInterface
      */
-    protected $tax = null;
+    protected $category = null;
 
     /**
      * The skipped fields.
@@ -27,7 +27,7 @@ class RateFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
-        'tax',
+        'category',
     ];
 
     /**
@@ -59,34 +59,34 @@ class RateFormBuilder extends FormBuilder
      */
     public function onSaving()
     {
-        /* @var TaxInterface $tax */
-        if ($tax = $this->getTax()) {
+        /* @var CategoryInterface $category */
+        if ($category = $this->getCategory()) {
 
             $entry = $this->getFormEntry();
 
-            $entry->setAttribute('tax', $tax);
+            $entry->setAttribute('category', $category);
         }
     }
 
     /**
      * Get the tax.
      *
-     * @return TaxInterface|null
+     * @return CategoryInterface|null
      */
-    public function getTax()
+    public function getCategory()
     {
-        return $this->tax;
+        return $this->category;
     }
 
     /**
-     * Set the tax.
+     * Set the category.
      *
-     * @param TaxInterface $tax
+     * @param CategoryInterface $category
      * @return $this
      */
-    public function setTax(TaxInterface $tax)
+    public function setCategory(CategoryInterface $category)
     {
-        $this->tax = $tax;
+        $this->category = $category;
 
         return $this;
     }

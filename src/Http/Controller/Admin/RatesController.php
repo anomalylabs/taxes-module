@@ -1,10 +1,10 @@
 <?php namespace Anomaly\TaxesModule\Http\Controller\Admin;
 
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\TaxesModule\Category\Contract\CategoryInterface;
+use Anomaly\TaxesModule\Category\Contract\CategoryRepositoryInterface;
 use Anomaly\TaxesModule\Rate\Form\RateFormBuilder;
 use Anomaly\TaxesModule\Rate\Table\RateTableBuilder;
-use Anomaly\TaxesModule\Tax\Contract\TaxInterface;
-use Anomaly\TaxesModule\Tax\Contract\TaxRepositoryInterface;
 
 /**
  * Class RatesController
@@ -20,18 +20,18 @@ class RatesController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param RateTableBuilder       $table
-     * @param TaxRepositoryInterface $taxes
+     * @param RateTableBuilder            $table
+     * @param CategoryRepositoryInterface $categories
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(RateTableBuilder $table, TaxRepositoryInterface $taxes)
+    public function index(RateTableBuilder $table, CategoryRepositoryInterface $categories)
     {
-        /* @var TaxInterface $tax */
-        if ($tax = $taxes->find($this->route->getParameter('tax'))) {
+        /* @var CategoryInterface $category */
+        if ($category = $categories->find($this->route->getParameter('tax'))) {
 
-            $this->template->set('tax', $tax);
+            $this->template->set('category', $category);
 
-            $table->setTax($tax);
+            $table->setCategory($category);
         }
 
         return $table->render();
@@ -40,15 +40,15 @@ class RatesController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param RateFormBuilder        $form
-     * @param TaxRepositoryInterface $taxes
+     * @param RateFormBuilder             $form
+     * @param CategoryRepositoryInterface $categories
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(RateFormBuilder $form, TaxRepositoryInterface $taxes)
+    public function create(RateFormBuilder $form, CategoryRepositoryInterface $categories)
     {
-        /* @var TaxInterface $tax */
-        if ($tax = $taxes->find($this->route->getParameter('tax'))) {
-            $form->setTax($tax);
+        /* @var CategoryInterface $category */
+        if ($category = $categories->find($this->route->getParameter('tax'))) {
+            $form->setTax($category);
         }
 
         return $form->render();

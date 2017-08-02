@@ -1,8 +1,14 @@
 <?php namespace Anomaly\TaxesModule;
 
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
-use Anomaly\Streams\Platform\Model\EloquentModel;
-use Anomaly\TaxesModule\Taxable\TaxableModel;
+use Anomaly\Streams\Platform\Model\Taxes\TaxesCategoriesEntryModel;
+use Anomaly\Streams\Platform\Model\Taxes\TaxesRatesEntryModel;
+use Anomaly\TaxesModule\Category\CategoryModel;
+use Anomaly\TaxesModule\Category\CategoryRepository;
+use Anomaly\TaxesModule\Category\Contract\CategoryRepositoryInterface;
+use Anomaly\TaxesModule\Rate\Contract\RateRepositoryInterface;
+use Anomaly\TaxesModule\Rate\RateModel;
+use Anomaly\TaxesModule\Rate\RateRepository;
 
 /**
  * Class TaxesModuleServiceProvider
@@ -16,17 +22,13 @@ class TaxesModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
-     * The addon routes.
+     * The addon bindings.
      *
      * @var array
      */
-    protected $routes = [
-        'admin/taxes'                       => 'Anomaly\TaxesModule\Http\Controller\Admin\TaxesController@index',
-        'admin/taxes/create'                => 'Anomaly\TaxesModule\Http\Controller\Admin\TaxesController@create',
-        'admin/taxes/edit/{id}'             => 'Anomaly\TaxesModule\Http\Controller\Admin\TaxesController@edit',
-        'admin/taxes/rates/{tax}'           => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@index',
-        'admin/taxes/rates/{tax}/create'    => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@create',
-        'admin/taxes/rates/{tax}/edit/{id}' => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@edit',
+    protected $bindings = [
+        TaxesRatesEntryModel::class      => RateModel::class,
+        TaxesCategoriesEntryModel::class => CategoryModel::class,
     ];
 
     /**
@@ -35,61 +37,21 @@ class TaxesModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\TaxesModule\Tax\Contract\TaxRepositoryInterface'         => 'Anomaly\TaxesModule\Tax\TaxRepository',
-        'Anomaly\TaxesModule\Rate\Contract\RateRepositoryInterface'       => 'Anomaly\TaxesModule\Rate\RateRepository',
-        'Anomaly\TaxesModule\Taxable\Contract\TaxableRepositoryInterface' => 'Anomaly\TaxesModule\Taxable\TaxableRepository',
+        RateRepositoryInterface::class     => RateRepository::class,
+        CategoryRepositoryInterface::class => CategoryRepository::class,
     ];
 
     /**
-     * Register the addon.
+     * The addon routes.
      *
-     * @param EloquentModel $model
+     * @var array
      */
-    public function register(EloquentModel $model)
-    {
-        $model->bind(
-            'taxable',
-            function () {
-
-                /* @var EloquentModel $this */
-                return $this->morphOne(TaxableModel::class, 'item', 'item_type');
-            }
-        );
-
-        $model->bind(
-            'get_taxable',
-            function () {
-
-                /* @var EloquentModel $this */
-                return $this->taxable()->first();
-            }
-        );
-
-        $model->bind(
-            'get_taxable_country',
-            function () {
-
-                /* @var EloquentModel $this */
-                return $this->getAttribute('country');
-            }
-        );
-
-        $model->bind(
-            'get_taxable_state',
-            function () {
-
-                /* @var EloquentModel $this */
-                return $this->getAttribute('state');
-            }
-        );
-
-        $model->bind(
-            'get_taxable_postal_code',
-            function () {
-
-                /* @var EloquentModel $this */
-                return $this->getAttribute('postal_code');
-            }
-        );
-    }
+    protected $routes = [
+        'admin/taxes'                            => 'Anomaly\TaxesModule\Http\Controller\Admin\CategoryController@index',
+        'admin/taxes/create'                     => 'Anomaly\TaxesModule\Http\Controller\Admin\CategoryController@create',
+        'admin/taxes/edit/{id}'                  => 'Anomaly\TaxesModule\Http\Controller\Admin\CategoryController@edit',
+        'admin/taxes/rates/{category}'           => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@index',
+        'admin/taxes/rates/{category}/create'    => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@create',
+        'admin/taxes/rates/{category}/edit/{id}' => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@edit',
+    ];
 }

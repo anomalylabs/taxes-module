@@ -1,4 +1,4 @@
-{% if template.tax %}
+{% if template.category %}
     <div class="card">
         <div class="card-block">
 
@@ -6,16 +6,16 @@
                 <div class="media-body">
 
                     <h4 class="media-heading">
-                        {{ template.tax.name }}
+                        {{ template.category.name }}
 
-                        {% if template.tax.suffix.value %}
-                            ({{ template.tax.suffix }})
+                        {% if template.category.suffix.value %}
+                            ({{ template.category.suffix }})
                         {% endif %}
                         <br>
-                        <small class="text-muted">{{ template.tax.description }}</small>
+                        <small class="text-muted">{{ template.category.description }}</small>
                     </h4>
 
-                    <a href="/admin/taxes/edit/{{ template.tax.id }}">{{ trans('module::message.return_to_tax') }}</a>
+                    <a href="/admin/taxes/edit/{{ template.category.id }}">{{ trans('module::message.return_to_tax') }}</a>
 
                 </div>
             </div>

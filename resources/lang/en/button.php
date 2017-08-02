@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'rates'    => 'Rates',
-    'add_rate' => 'Add Rate',
-    'new_tax'  => 'New Tax',
+    'rates'        => 'Rates',
+    'add_rate'     => 'Add Rate',
+    'add_category' => 'Add Category',
 ];

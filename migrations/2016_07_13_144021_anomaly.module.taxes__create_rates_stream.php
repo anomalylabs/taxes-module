@@ -29,7 +29,7 @@ class AnomalyModuleTaxesCreateRatesStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'tax'      => [
+        'category' => [
             'required' => true,
         ],
         'name'     => [

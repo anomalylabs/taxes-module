@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'taxes' => [
-        'title'       => 'Taxes',
-        'description' => 'Manage the available taxes available.',
+    'categories' => [
+        'title'       => 'Categories',
+        'description' => 'Manage tax categories.',
     ],
-    'rates' => [
+    'rates'      => [
         'title'       => 'Rates',
-        'description' => 'Manage tax rates used to calculate tax amounts for a specific tax classes.',
+        'description' => 'Manage tax rates used to calculate tax amounts for a specific tax categories.',
     ],
 ];

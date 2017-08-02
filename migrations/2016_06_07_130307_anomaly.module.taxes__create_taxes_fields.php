@@ -1,6 +1,7 @@
 <?php
 
 use Anomaly\Streams\Platform\Database\Migration\Migration;
+use Anomaly\TaxesModule\Category\CategoryModel;
 
 /**
  * Class AnomalyModuleTaxesCreateTaxesFields
@@ -45,10 +46,10 @@ class AnomalyModuleTaxesCreateTaxesFields extends Migration
                 'label' => 'anomaly.module.taxes::field.compound.value',
             ],
         ],
-        'tax'         => [
+        'category'    => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'related' => 'Anomaly\TaxesModule\Tax\TaxModel',
+                'related' => CategoryModel::class,
             ],
         ],
     ];

@@ -1,7 +1,8 @@
 <?php namespace Anomaly\TaxesModule\Rate\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
-use Anomaly\TaxesModule\Tax\Contract\TaxInterface;
+use Anomaly\TaxesModule\Category\CategoryModel;
+use Anomaly\TaxesModule\Category\Contract\CategoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -16,11 +17,11 @@ class RateTableBuilder extends TableBuilder
 {
 
     /**
-     * The tax instance.
+     * The tax category.
      *
-     * @var null|TaxInterface
+     * @var null|CategoryModel
      */
-    protected $tax = null;
+    protected $category = null;
 
     /**
      * The table columns.
@@ -73,28 +74,28 @@ class RateTableBuilder extends TableBuilder
      */
     public function onQuerying(Builder $query)
     {
-        if ($tax = $this->getTax()) {
-            $query->where('tax_id', $tax->getId());
+        if ($category = $this->getCategory()) {
+            $query->where('category_id', $category->getId());
         }
     }
 
     /**
-     * Get the tax.
+     * Get the category.
      *
-     * @return TaxInterface|null
+     * @return CategoryInterface|null
      */
-    public function getTax()
+    public function getCategory()
     {
-        return $this->tax;
+        return $this->category;
     }
 
     /**
-     * Set the tax.
+     * Set the category.
      *
-     * @param TaxInterface $tax
+     * @param CategoryInterface $tax
      * @return $this
      */
-    public function setTax(TaxInterface $tax)
+    public function setCategory(CategoryInterface $tax)
     {
         $this->tax = $tax;
 

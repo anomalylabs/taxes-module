@@ -1,9 +1,9 @@
 <?php namespace Anomaly\TaxesModule\Rate;
 
+use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 use Anomaly\TaxesModule\Tax\TaxMatcher;
-use Anomaly\TaxesModule\Taxable\Contract\TaxableInterface;
 
 /**
  * Class RateCollection
@@ -18,18 +18,18 @@ class RateCollection extends EntryCollection
     /**
      * Collect matching rates.
      *
-     * @param null $country
-     * @param null $state
-     * @param null $postal
+     * @param AddressInterface $address
      * @return RateCollection
      */
-    public function collect(array $parameters = [])
+    public function collect(AddressInterface $address)
     {
         $rates = [];
 
+        $matcher = new TaxMatcher();
+
         foreach ($this->priorities() as $priority) {
             foreach ($this->priority($priority) as $rate) {
-                if ((new TaxMatcher())->matches($rate, $parameters)) {
+                if ($matcher->matches($rate, $address)) {
 
                     $rates[] = $rate;
 
@@ -39,6 +39,26 @@ class RateCollection extends EntryCollection
         }
 
         return $this->make($rates);
+    }
+
+    /**
+     * Return the priorities.
+     *
+     * @return array
+     */
+    protected function priorities()
+    {
+        $priorities = $this->map(
+            function ($rate) {
+
+                /* @var RateInterface $rate */
+                return $rate->getPriority();
+            }
+        )->all();
+
+        asort($priorities);
+
+        return array_unique($priorities);
     }
 
     /**
@@ -88,25 +108,5 @@ class RateCollection extends EntryCollection
                 return $rate->isCompound();
             }
         );
-    }
-
-    /**
-     * Return the priorities.
-     *
-     * @return array
-     */
-    protected function priorities()
-    {
-        $priorities = $this->map(
-            function ($rate) {
-
-                /* @var RateInterface $rate */
-                return $rate->getPriority();
-            }
-        )->all();
-
-        asort($priorities);
-
-        return array_unique($priorities);
     }
 }

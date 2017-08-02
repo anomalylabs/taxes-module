@@ -1,6 +1,8 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
-use Anomaly\TaxesModule\Taxable\Contract\TaxableInterface;
+use Anomaly\CustomersModule\Address\Contract\AddressInterface;
+use Anomaly\StoreModule\Contract\TaxableInterface;
+use Anomaly\TaxesModule\Rate\RateCollection;
 
 /**
  * Class TaxResolver
@@ -16,14 +18,15 @@ class TaxResolver
      * Resolve the applicable tax rate.
      *
      * @param TaxableInterface $taxable
-     * @param null             $country
-     * @param null             $state
-     * @param null             $postal
+     * @param AddressInterface $address
+     * @return RateCollection
      */
-    public function resolve(TaxableInterface $taxable, array $parameters = [])
+    public function resolve(TaxableInterface $taxable, AddressInterface $address)
     {
-        $rates = $taxable->getTaxRates();
+        $category = $taxable->getTaxableCategory();
 
-        return $rates->collect($parameters);
+        return $category
+            ->getRates()
+            ->collect($address);
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
+use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 
 /**
@@ -15,25 +16,25 @@ class TaxMatcher
     /**
      * Return if the rate matches the parameters.
      *
-     * @param RateInterface $rate
-     * @param array         $parameters
+     * @param RateInterface    $rate
+     * @param AddressInterface $address
      * @return bool
      */
-    public function matches(RateInterface $rate, array $parameters = [])
+    public function matches(RateInterface $rate, AddressInterface $address)
     {
-        if (!$this->applies(array_get($parameters, 'country'), $rate->getCountry())) {
+        if (!$this->applies($address->getCountry(), $rate->getCountry())) {
             return false;
         }
 
-        if (!$this->applies(array_get($parameters, 'state'), $rate->getState())) {
+        if (!$this->applies($address->getState(), $rate->getState())) {
             return false;
         }
 
-        if (!$this->applies(array_get($parameters, 'postal_code'), $rate->getPostalCode())) {
+        if (!$this->applies($address->getPostalCode(), $rate->getPostalCode())) {
             return false;
         }
 
-        if (!$this->applies(array_get($parameters, 'city'), $rate->getCity())) {
+        if (!$this->applies($address->getCity(), $rate->getCity())) {
             return false;
         }
 

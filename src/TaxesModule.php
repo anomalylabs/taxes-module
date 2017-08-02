@@ -14,18 +14,26 @@ class TaxesModule extends Module
 {
 
     /**
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'fa fa-percent';
+
+    /**
      * The module sections.
      *
      * @var array
      */
     protected $sections = [
-        'taxes' => [
+        'categories' => [
             'buttons'  => [
-                'new_tax',
+                'add_category',
             ],
             'sections' => [
                 'rates' => [
-                    'href'    => 'admin/taxes/rates/{request.route.parameters.tax}',
+                    'hidden'  => 'hidden',
+                    'href'    => 'admin/taxes/rates/{request.route.parameters.category}',
                     'buttons' => [
                         'add_rate',
                     ],
