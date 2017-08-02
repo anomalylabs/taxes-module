@@ -20,14 +20,14 @@ class RatesController extends AdminController
     /**
      * Display an index of existing entries.
      *
-     * @param RateTableBuilder            $table
+     * @param RateTableBuilder $table
      * @param CategoryRepositoryInterface $categories
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(RateTableBuilder $table, CategoryRepositoryInterface $categories)
     {
         /* @var CategoryInterface $category */
-        if ($category = $categories->find($this->route->getParameter('tax'))) {
+        if ($category = $categories->find($this->route->parameter('tax'))) {
 
             $this->template->set('category', $category);
 
@@ -40,15 +40,15 @@ class RatesController extends AdminController
     /**
      * Create a new entry.
      *
-     * @param RateFormBuilder             $form
+     * @param RateFormBuilder $form
      * @param CategoryRepositoryInterface $categories
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create(RateFormBuilder $form, CategoryRepositoryInterface $categories)
     {
         /* @var CategoryInterface $category */
-        if ($category = $categories->find($this->route->getParameter('tax'))) {
-            $form->setTax($category);
+        if ($category = $categories->find($this->route->parameter('tax'))) {
+            $form->setCategory($category);
         }
 
         return $form->render();
@@ -62,6 +62,6 @@ class RatesController extends AdminController
      */
     public function edit(RateFormBuilder $form)
     {
-        return $form->render($this->route->getParameter('id'));
+        return $form->render($this->route->parameter('id'));
     }
 }
