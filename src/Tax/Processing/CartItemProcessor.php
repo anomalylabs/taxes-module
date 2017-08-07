@@ -23,14 +23,14 @@ class CartItemProcessor
             return;
         }
 
-        $item
-            ->modifiers()
-            ->create(
-                [
-                    'type'  => 'tax',
-                    'value' => '7.025%',
-                    'name'  => 'State Tax',
-                ]
-            );
+//        $item
+//            ->modifiers()
+//            ->create(
+//                [
+//                    'type'  => 'tax',
+//                    'value' => '7.025%',
+//                    'name'  => 'State Tax',
+//                ]
+//            );
     }
 }
