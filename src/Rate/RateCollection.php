@@ -29,6 +29,7 @@ class RateCollection extends EntryCollection
 
         foreach ($this->priorities() as $priority) {
             foreach ($this->priority($priority) as $rate) {
+
                 if ($matcher->matches($rate, $address)) {
 
                     $rates[] = $rate;

@@ -1,6 +1,11 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
+use Anomaly\CartsModule\Cart\Contract\CartInterface;
+use Anomaly\CartsModule\Item\Contract\ItemInterface;
+use Anomaly\CartsModule\Modifier\ModifierModel;
+use Anomaly\CustomersModule\Customer\Contract\CustomerInterface;
 use Anomaly\Streams\Platform\Support\Currency;
+use Anomaly\TaxesModule\Rate\Contract\RateInterface;
 use Anomaly\TaxesModule\Rate\RateCollection;
 
 /**
@@ -65,5 +70,57 @@ class TaxProcessor
         return $this->currency->normalize(
             $this->applicator->compound($rates, $this->applicator->primary($rates, $value)) - $value
         );
+    }
+
+    /**
+     * Apply the tax to the target.
+     *
+     * @param $target
+     */
+    public function process(CartInterface $target)
+    {
+        if (!$user = $target->getUser()) {
+            return;
+        }
+
+        /* @var CustomerInterface $customer */
+        if (!$customer = $user->call('get_customer')) {
+            return;
+        }
+
+        if (!$address = $customer->getBillingAddress()) {
+            return;
+        }
+
+        /* @var TaxResolver $resolver */
+        $resolver = app(TaxResolver::class);
+
+        /* @var TaxCalculator $calculator */
+        $calculator = app(TaxCalculator::class);
+
+        /* @var ItemInterface $item */
+        foreach ($target->getItems() as $item) {
+
+            /* @var RateInterface $rate */
+            foreach ($resolver->resolve($item->getEntry(), $address) as $rate) {
+
+                foreach ($item->getModifiers() as $modifier) {
+
+                    if ($modifier->entry->toArray() == $rate->toArray()) {
+                        return;
+                    }
+                }
+
+                (new ModifierModel(
+                    [
+                        'type'  => 'tax',
+                        'cart'  => ($item instanceof CartInterface) ? $item : $item->cart,
+                        'item'  => ($item instanceof CartInterface) ? null : $item,
+                        'value' => $calculator->calculate($rate, $item->getSubtotal()),
+                        'entry' => $rate,
+                    ]
+                ))->save();
+            }
+        }
     }
 }

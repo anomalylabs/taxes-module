@@ -17,6 +17,15 @@ class CategoryModel extends TaxesCategoriesEntryModel implements CategoryInterfa
 {
 
     /**
+     * The cascading deletes.
+     *
+     * @var array
+     */
+    protected $cascades = [
+        'rates',
+    ];
+
+    /**
      * Get the related rates.
      *
      * @return RateCollection
