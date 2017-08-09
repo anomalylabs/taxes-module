@@ -47,7 +47,7 @@ class RatesController extends AdminController
     public function create(RateFormBuilder $form, CategoryRepositoryInterface $categories)
     {
         /* @var CategoryInterface $category */
-        if ($category = $categories->find($this->route->parameter('tax'))) {
+        if ($category = $categories->find($this->route->parameter('category'))) {
             $form->setCategory($category);
         }
 

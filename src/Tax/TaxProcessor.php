@@ -35,7 +35,7 @@ class TaxProcessor
     /**
      * Create a new TaxApplicator instance.
      *
-     * @param Currency $currency
+     * @param Currency      $currency
      * @param TaxApplicator $applicator
      */
     public function __construct(Currency $currency, TaxApplicator $applicator)
@@ -48,7 +48,7 @@ class TaxProcessor
      * Apply taxes to a value.
      *
      * @param RateCollection $rates
-     * @param float $value
+     * @param float          $value
      * @return float
      */
     public function apply(RateCollection $rates, $value)
@@ -62,7 +62,7 @@ class TaxProcessor
      * Calculate taxes on a value.
      *
      * @param RateCollection $rates
-     * @param float $value
+     * @param float          $value
      * @return float
      */
     public function calculate(RateCollection $rates, $value)
@@ -100,7 +100,7 @@ class TaxProcessor
 
         /* @var ItemInterface $item */
         foreach ($target->getItems() as $item) {
-
+            
             if (!$rates = $resolver->resolve($item->getEntry(), $address)) {
                 continue;
             }
