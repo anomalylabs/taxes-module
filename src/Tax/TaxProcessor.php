@@ -101,8 +101,12 @@ class TaxProcessor
         /* @var ItemInterface $item */
         foreach ($target->getItems() as $item) {
 
+            if (!$rates = $resolver->resolve($item->getEntry(), $address)) {
+                continue;
+            }
+
             /* @var RateInterface $rate */
-            foreach ($resolver->resolve($item->getEntry(), $address) as $rate) {
+            foreach ($rates as $rate) {
 
                 foreach ($item->getModifiers() as $modifier) {
 
