@@ -19,11 +19,13 @@ class TaxResolver
      *
      * @param TaxableInterface $taxable
      * @param AddressInterface $address
-     * @return RateCollection
+     * @return null|RateCollection
      */
     public function resolve(TaxableInterface $taxable, AddressInterface $address)
     {
-        $category = $taxable->getTaxableCategory();
+        if (!$category = $taxable->getTaxableCategory()) {
+            return null;
+        }
 
         return $category
             ->getRates()
