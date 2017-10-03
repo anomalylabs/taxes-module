@@ -88,7 +88,11 @@ class TaxProcessor
             return;
         }
 
-        if (!$address = $customer->getBillingAddress()) {
+        try {
+            if (!$address = $customer->getBillingAddress()) {
+                return;
+            }
+        } catch(\Exception $e) {
             return;
         }
 
