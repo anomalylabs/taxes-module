@@ -8,7 +8,7 @@
         "ecommerce"
     ],
     "homepage": "https://pyrocms.com/",
-    "license": "https://pyrocms.com/pro",
+    "license": "MIT",
     "authors": [
         {
             "name": "PyroCMS, Inc.",
