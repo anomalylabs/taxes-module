@@ -1,6 +1,5 @@
 <?php namespace Anomaly\TaxesModule;
 
-use Anomaly\CartsModule\Cart\CartProcessor;
 use Anomaly\Streams\Platform\Addon\AddonServiceProvider;
 use Anomaly\Streams\Platform\Model\Taxes\TaxesCategoriesEntryModel;
 use Anomaly\Streams\Platform\Model\Taxes\TaxesRatesEntryModel;
@@ -10,8 +9,6 @@ use Anomaly\TaxesModule\Category\Contract\CategoryRepositoryInterface;
 use Anomaly\TaxesModule\Rate\Contract\RateRepositoryInterface;
 use Anomaly\TaxesModule\Rate\RateModel;
 use Anomaly\TaxesModule\Rate\RateRepository;
-use Anomaly\TaxesModule\Tax\TaxProcessor;
-use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class TaxesModuleServiceProvider
@@ -58,14 +55,4 @@ class TaxesModuleServiceProvider extends AddonServiceProvider
         'admin/taxes/rates/{category}/edit/{id}' => 'Anomaly\TaxesModule\Http\Controller\Admin\RatesController@edit',
     ];
 
-    /**
-     * Register the addon.
-     *
-     * @param CartProcessor $carts
-     * @param Repository $config
-     */
-    public function register(CartProcessor $carts)
-    {
-        $carts->addProcessor(TaxProcessor::class);
-    }
 }
