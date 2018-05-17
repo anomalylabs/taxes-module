@@ -1,7 +1,7 @@
 <?php namespace Anomaly\TaxesModule\Tax;
 
 use Anomaly\StoreModule\Contract\AddressInterface;
-use Anomaly\StoreModule\Contract\TaxableInterface;
+use Anomaly\TaxesModule\Tax\Contract\TaxableInterface;
 use Anomaly\TaxesModule\Rate\RateCollection;
 
 /**
