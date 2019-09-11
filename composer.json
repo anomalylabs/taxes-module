@@ -3,28 +3,35 @@
     "type": "streams-addon",
     "description": "Manage tax providers and rates.",
     "keywords": [
-        "streams module",
-        "taxes module",
-        "ecommerce"
+        "ecom",
+        "taxes",
+        "ecommerce",
+        "pyrocms"
     ],
-    "homepage": "https://pyrocms.com/",
+    "homepage": "http://pyrocms.com/addons/anomaly/taxes-module",
     "license": "MIT",
     "authors": [
         {
             "name": "PyroCMS, Inc.",
-            "email": "support@pyrocms.com",
             "homepage": "http://pyrocms.com/",
             "role": "Owner"
         },
         {
             "name": "Ryan Thompson",
-            "email": "ryan@pyrocms.com",
             "homepage": "http://ryanthepyro.com/",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "support@pyrocms.com"
+        "docs": "https://pyrocms.com/documentation/taxes-module",
+        "forum": "https://pyrocms.com/forum/channels/taxes-module",
+        "videos": "https://pyrocms.com/videos/categories/taxes-module",
+        "slack": "https://pyrocms.com/slack",
+        "issues": "https://github.com/pyrocms/pyrocms/issues?q=is:issue is:open [taxes-module]",
+        "source": "https://github.com/anomalylabs/taxes-module"
+    },
+    "require": {
+        "anomaly/streams-platform": "^1.6"
     },
     "autoload": {
         "psr-4": {
